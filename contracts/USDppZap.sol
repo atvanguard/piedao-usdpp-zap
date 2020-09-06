@@ -3,7 +3,7 @@ pragma solidity 0.6.4;
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20, SafeMath} from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
-contract Swapper {
+contract USDppZap {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
     

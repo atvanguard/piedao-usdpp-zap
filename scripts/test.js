@@ -1,4 +1,4 @@
-const Swapper = artifacts.require("Swapper");
+const USDppZap = artifacts.require("USDppZap");
 const IERC20 = artifacts.require("IERC20");
 
 const toWei = web3.utils.toWei
@@ -9,7 +9,7 @@ const userAddress = '0x3dfd23a6c5e8bbcfc9581d2e864a68feb6a076d3'
 
 async function execute() {
     const [ account ] = await web3.eth.getAccounts()
-    const swapper = await Swapper.new(
+    const usdppZap = await USDppZap.new(
         '0xA5407eAE9Ba41422680e2e00537571bcC53efBfD', // susd
         '0x45F783CCE6B7FF23B2ab2D70e416cdb7D6055f51', // y
         '0x9a48bd0ec040ea4f1d3147c025cd4076a2e71e3e' // usdpp
@@ -19,13 +19,13 @@ async function execute() {
     const usdpp = await IERC20.at('0x9a48bd0ec040ea4f1d3147c025cd4076a2e71e3e'); // usdpp
     const amount = toWei('100');
     await dai.transfer(account, amount, { from: userAddress });
-    await dai.approve(swapper.address, amount);
+    await dai.approve(usdppZap.address, amount);
     console.log({
         dai: fromWei(await dai.balanceOf(account)),
         tusd: fromWei(await tusd.balanceOf(account)),
         usdpp: fromWei(await usdpp.balanceOf(account))
     });
-    const joinPool = await swapper.joinPool(toWei('90'), 1, amount, false, { gas: 2000000 })
+    const joinPool = await usdppZap.joinPool(toWei('90'), 1, amount, false, { gas: 2000000 })
     console.log({
         gasUsed: joinPool.receipt.gasUsed,
         dai: fromWei(await dai.balanceOf(account)),
