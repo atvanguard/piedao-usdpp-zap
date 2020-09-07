@@ -11,7 +11,8 @@ async function execute() {
     const [ account ] = await web3.eth.getAccounts()
     const usdppZap = await USDppZap.new(
         '0xA5407eAE9Ba41422680e2e00537571bcC53efBfD', // susd
-        '0x45F783CCE6B7FF23B2ab2D70e416cdb7D6055f51', // y
+        // '0x45F783CCE6B7FF23B2ab2D70e416cdb7D6055f51', // y
+        '0x329239599afb305da0a2ec69c58f8a6697f9f88d', // swTUSD
         '0x9a48bd0ec040ea4f1d3147c025cd4076a2e71e3e' // usdpp
     );
     const dai = await IERC20.at('0x6B175474E89094C44Da98b954EedeAC495271d0F'); // dai
